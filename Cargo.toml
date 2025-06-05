@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/oracle",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/your-org/soroban-oracle-kit"
+
+[workspace.dependencies]
+# Pinned to match the rest of the ecosystem (soroban-amm, soroban-test-kit).
+soroban-sdk = { version = "21.7.7" }
+
+[profile.release]
+opt-level = "z"
+debug = 0
+strip = "symbols"
+debug-assertions = false
+overflow-checks = true
+lto = true
+panic = "abort"
+codegen-units = 1
