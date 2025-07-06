@@ -188,3 +188,4 @@ mod test {
 }
 pub mod staleness;
 pub mod age;
+pub mod try_get;
