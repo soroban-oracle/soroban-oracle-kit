@@ -191,3 +191,4 @@ pub mod age;
 pub mod try_get;
 pub mod sanity_bounds;
 pub mod nonzero;
+pub mod pause;
