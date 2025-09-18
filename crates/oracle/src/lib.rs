@@ -195,3 +195,4 @@ pub mod pause;
 pub mod inverse;
 pub mod asset_count;
 pub mod adapters;
+pub mod median;
