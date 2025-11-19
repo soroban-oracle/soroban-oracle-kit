@@ -198,3 +198,4 @@ pub mod adapters;
 pub mod median;
 pub mod roles;
 pub mod decimals;
+pub mod admin_transfer;
