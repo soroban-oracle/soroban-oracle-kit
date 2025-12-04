@@ -199,3 +199,4 @@ pub mod median;
 pub mod roles;
 pub mod decimals;
 pub mod admin_transfer;
+pub mod batch_set;
