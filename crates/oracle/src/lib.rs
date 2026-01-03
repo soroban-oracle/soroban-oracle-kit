@@ -201,3 +201,4 @@ pub mod decimals;
 pub mod admin_transfer;
 pub mod batch_set;
 pub mod asset_config;
+pub mod heartbeat;
