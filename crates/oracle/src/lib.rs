@@ -203,3 +203,4 @@ pub mod batch_set;
 pub mod asset_config;
 pub mod heartbeat;
 pub mod deviation_breaker;
+pub mod ring_buffer;
