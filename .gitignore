@@ -3,6 +3,6 @@
 .DS_Store
 # Soroban emits test snapshot JSON during `cargo test`
 test_snapshots/
-# Documentation/strategy markdown kept out of the published repo (README is published)
-*.md
-!README.md
+# Internal strategy/backlog docs kept out of the published repo
+WAVE_PITCH.md
+ISSUES.md

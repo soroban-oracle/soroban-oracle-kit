@@ -1,6 +1,6 @@
 # soroban-oracle-kit
 
-[![CI](https://github.com/your-org/soroban-oracle-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/soroban-oracle-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/soroban-oracle/soroban-oracle-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/soroban-oracle/soroban-oracle-kit/actions/workflows/ci.yml)
 
 **A price-feed oracle for Soroban DeFi** — an on-chain oracle contract plus the
 freshness, aggregation, and adapter machinery that DeFi contracts need to price
@@ -20,14 +20,15 @@ and adapters that derive prices from on-chain sources like AMM pools.
 | Component | Status | Provides |
 |---|---|---|
 | `oracle` contract | ✅ shipped | Admin-curated, timestamped price feed (`set_price` / `get_price` / `get_price_data` / `assets`) |
-| Staleness guard | 🚧 seed issue | `get_price_no_older_than(asset, max_age)` |
-| TWAP accumulator | 🚧 seed issue | Cumulative price·time accumulator + windowed average |
-| Median aggregation | 🚧 seed issue | Combine multiple submitted prices into a median |
-| AMM pool adapter | 🚧 seed issue | Derive a price from `soroban-amm` reserves |
-| Multi-writer roles | 🚧 seed issue | More than one authorized publisher |
-| Consumer examples | 🚧 seed issue | Reference integrations |
+| Staleness guard | ✅ shipped | `get_price_no_older_than(asset, max_age)` |
+| Median aggregation | ✅ shipped | Combine multiple submitted prices into a median |
+| Multi-writer roles | ✅ shipped | More than one authorized publisher |
+| Cross-decimals normalization | ✅ shipped | Scale prices between arbitrary decimals and the kit's 7-decimal convention |
+| TWAP accumulator | 🚧 open issue | Cumulative price·time accumulator + windowed average |
+| AMM pool adapter | 🚧 open issue | Derive a price from `soroban-amm` reserves |
+| Consumer examples | 🚧 open issue | Reference integrations |
 
-The 🚧 items are scoped issues — see [`OPEN_SOURCE_ISSUES.md`](./OPEN_SOURCE_ISSUES.md).
+The 🚧 items are tracked as [open issues](https://github.com/soroban-oracle/soroban-oracle-kit/issues) — see [`OPEN_SOURCE_ISSUES.md`](./OPEN_SOURCE_ISSUES.md) for scope details on each.
 
 ---
 
@@ -85,9 +86,9 @@ trust assumptions. See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## Contributing
 
-This repository participates in
-**[Drips Wave](https://docs.drips.network/wave/)**. See
-[`OPEN_SOURCE_ISSUES.md`](./OPEN_SOURCE_ISSUES.md) to get started.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the development workflow and
+[`OPEN_SOURCE_ISSUES.md`](./OPEN_SOURCE_ISSUES.md) for scoped, point-tagged
+issues to get started on.
 
 ## License
 
