@@ -12,8 +12,8 @@
 //! a malicious writer; it defends consumers against an *absent* writer whose
 //! last price has aged past a safe bound.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, Address, Env};
 
 #[contractimpl]
@@ -45,7 +45,10 @@ impl Oracle {
 #[cfg(test)]
 mod test {
     use super::*;
-    use soroban_sdk::{testutils::{Address as _, Ledger as _}, Env};
+    use soroban_sdk::{
+        testutils::{Address as _, Ledger as _},
+        Env,
+    };
 
     fn setup(env: &Env) -> (OracleClient, Address) {
         let admin = Address::generate(env);

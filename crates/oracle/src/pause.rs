@@ -11,8 +11,8 @@
 //! cost of availability. Consumers that gate on `is_paused` trust the admin to
 //! pause honestly and unpause promptly.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, contracttype, Env};
 
 #[derive(Clone)]

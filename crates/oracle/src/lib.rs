@@ -186,21 +186,21 @@ mod test {
         oracle.get_price(&unknown);
     }
 }
-pub mod staleness;
+pub mod adapters;
+pub mod admin_transfer;
 pub mod age;
-pub mod try_get;
-pub mod sanity_bounds;
+pub mod asset_config;
+pub mod asset_count;
+pub mod batch_set;
+pub mod decimals;
+pub mod deviation_breaker;
+pub mod heartbeat;
+pub mod inverse;
+pub mod median;
 pub mod nonzero;
 pub mod pause;
-pub mod inverse;
-pub mod asset_count;
-pub mod adapters;
-pub mod median;
-pub mod roles;
-pub mod decimals;
-pub mod admin_transfer;
-pub mod batch_set;
-pub mod asset_config;
-pub mod heartbeat;
-pub mod deviation_breaker;
 pub mod ring_buffer;
+pub mod roles;
+pub mod sanity_bounds;
+pub mod staleness;
+pub mod try_get;

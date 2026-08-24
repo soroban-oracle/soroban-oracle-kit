@@ -50,7 +50,10 @@ mod test {
         let env = Env::default();
         env.mock_all_auths();
         let oracle = setup(&env);
-        assert_eq!(oracle.check_price_bounds(&5_0000000, &1, &10_0000000), 5_0000000);
+        assert_eq!(
+            oracle.check_price_bounds(&5_0000000, &1, &10_0000000),
+            5_0000000
+        );
     }
 
     #[test]

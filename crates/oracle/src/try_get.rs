@@ -10,8 +10,8 @@
 //! This read changes only the *absence* signalling (None vs panic); it does not
 //! validate freshness — combine with the staleness guard where that matters.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, Address, Env};
 
 #[contractimpl]

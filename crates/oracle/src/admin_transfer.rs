@@ -12,8 +12,8 @@
 //! so neither the proposal nor the acceptance can be forged. A pending proposal
 //! can be overwritten by the current admin before acceptance.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, contracttype, Address, Env};
 
 #[derive(Clone)]
@@ -56,7 +56,9 @@ impl Oracle {
 
     /// The currently pending successor, if any.
     pub fn pending_admin(env: Env) -> Option<Address> {
-        env.storage().instance().get(&AdminTransferKey::PendingAdmin)
+        env.storage()
+            .instance()
+            .get(&AdminTransferKey::PendingAdmin)
     }
 
     /// The current admin.

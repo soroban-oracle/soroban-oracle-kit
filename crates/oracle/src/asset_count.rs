@@ -9,8 +9,8 @@
 //! Read-only over admin-curated state; introduces no new trust beyond the base
 //! feed.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, Address, Env, Vec};
 
 #[contractimpl]

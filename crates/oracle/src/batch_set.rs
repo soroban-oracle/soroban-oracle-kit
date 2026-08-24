@@ -12,8 +12,8 @@
 //! single shared timestamp means a slow batch does not make later entries look
 //! fresher than earlier ones.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, Address, Env, Vec};
 
 #[contractimpl]
@@ -43,7 +43,11 @@ impl Oracle {
             let (asset, price) = entry;
             assert!(price >= 0, "price must be non-negative");
 
-            if !env.storage().persistent().has(&DataKey::Price(asset.clone())) {
+            if !env
+                .storage()
+                .persistent()
+                .has(&DataKey::Price(asset.clone()))
+            {
                 assets.push_back(asset.clone());
             }
 
@@ -60,7 +64,10 @@ impl Oracle {
 #[cfg(test)]
 mod test {
     use super::*;
-    use soroban_sdk::{testutils::{Address as _, Ledger as _}, vec, Env};
+    use soroban_sdk::{
+        testutils::{Address as _, Ledger as _},
+        vec, Env,
+    };
 
     fn setup(env: &Env) -> (OracleClient, Address) {
         let admin = Address::generate(env);

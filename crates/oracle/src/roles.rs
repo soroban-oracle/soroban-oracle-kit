@@ -13,8 +13,8 @@
 //! itself aggregate or cross-check writer submissions; combine with median
 //! aggregation for defence against a single bad writer.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, contracttype, Address, Env};
 
 #[derive(Clone)]
@@ -28,7 +28,9 @@ impl Oracle {
     /// Authorize `writer` to publish prices. Admin-only. Idempotent.
     pub fn add_writer(env: Env, writer: Address) {
         Self::require_admin_role(&env);
-        env.storage().persistent().set(&RoleKey::Writer(writer), &true);
+        env.storage()
+            .persistent()
+            .set(&RoleKey::Writer(writer), &true);
     }
 
     /// Revoke `writer`'s publish authorization. Admin-only. Idempotent.

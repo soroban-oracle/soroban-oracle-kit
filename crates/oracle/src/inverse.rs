@@ -13,8 +13,8 @@
 //! only failure modes are a zero input (undefined reciprocal) and integer
 //! truncation, both handled explicitly.
 
-use crate::{Oracle, DECIMALS};
 use crate::OracleClient;
+use crate::{Oracle, DECIMALS};
 use soroban_sdk::{contractimpl, Env};
 
 /// `10^(2 * DECIMALS)` as the fixed-point numerator for inversion.

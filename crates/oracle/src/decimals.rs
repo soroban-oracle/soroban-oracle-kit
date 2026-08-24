@@ -12,8 +12,8 @@
 //! precision — round-trips are exact only when the original precision is >= the
 //! intermediate one used. Scaling *up* is checked against `i128` overflow.
 
-use crate::{Oracle, DECIMALS};
 use crate::OracleClient;
+use crate::{Oracle, DECIMALS};
 use soroban_sdk::{contractimpl, Env};
 
 #[contractimpl]

@@ -10,8 +10,8 @@
 //! parameters, not prices — a wrong heartbeat or deviation bound weakens a guard
 //! but does not by itself move the feed. Reads are open.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, contracttype, Address, Env};
 
 /// Per-asset safety/precision settings.
