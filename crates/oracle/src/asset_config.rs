@@ -10,8 +10,8 @@
 //! parameters, not prices — a wrong heartbeat or deviation bound weakens a guard
 //! but does not by itself move the feed. Reads are open.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, contracttype, Address, Env};
 
 /// Per-asset safety/precision settings.
@@ -69,7 +69,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, Env};
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);

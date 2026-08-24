@@ -11,8 +11,8 @@
 //! within it. The check is a liveness indicator only: a satisfied heartbeat says
 //! the data is recent, not that its *value* is correct.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, contracttype, Address, Env};
 
 #[derive(Clone)]
@@ -68,9 +68,12 @@ impl Oracle {
 #[cfg(test)]
 mod test {
     use super::*;
-    use soroban_sdk::{testutils::{Address as _, Ledger as _}, Env};
+    use soroban_sdk::{
+        testutils::{Address as _, Ledger as _},
+        Env,
+    };
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);

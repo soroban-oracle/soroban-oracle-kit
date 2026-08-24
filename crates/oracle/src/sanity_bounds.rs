@@ -37,7 +37,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, Address, Env};
 
-    fn setup(env: &Env) -> OracleClient {
+    fn setup(env: &Env) -> OracleClient<'_> {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);
@@ -50,7 +50,10 @@ mod test {
         let env = Env::default();
         env.mock_all_auths();
         let oracle = setup(&env);
-        assert_eq!(oracle.check_price_bounds(&5_0000000, &1, &10_0000000), 5_0000000);
+        assert_eq!(
+            oracle.check_price_bounds(&5_0000000, &1, &10_0000000),
+            5_0000000
+        );
     }
 
     #[test]

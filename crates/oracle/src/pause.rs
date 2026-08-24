@@ -11,8 +11,8 @@
 //! cost of availability. Consumers that gate on `is_paused` trust the admin to
 //! pause honestly and unpause promptly.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, contracttype, Env};
 
 #[derive(Clone)]
@@ -71,7 +71,7 @@ mod test {
         Address, Env, IntoVal,
     };
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);

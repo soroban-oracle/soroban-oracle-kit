@@ -10,8 +10,8 @@
 //! admin is trusted to write prices at the true ledger time; the helper merely
 //! exposes the elapsed seconds since that recorded write.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, Address, Env};
 
 #[contractimpl]
@@ -37,9 +37,12 @@ impl Oracle {
 #[cfg(test)]
 mod test {
     use super::*;
-    use soroban_sdk::{testutils::{Address as _, Ledger as _}, Env};
+    use soroban_sdk::{
+        testutils::{Address as _, Ledger as _},
+        Env,
+    };
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);

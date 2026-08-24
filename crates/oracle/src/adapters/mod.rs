@@ -9,5 +9,5 @@
 //! liquidations. See the individual modules.
 
 pub mod fixed;
-pub mod source;
 pub mod identity;
+pub mod source;

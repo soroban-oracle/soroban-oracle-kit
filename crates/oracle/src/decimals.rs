@@ -12,8 +12,8 @@
 //! precision — round-trips are exact only when the original precision is >= the
 //! intermediate one used. Scaling *up* is checked against `i128` overflow.
 
-use crate::{Oracle, DECIMALS};
 use crate::OracleClient;
+use crate::{Oracle, DECIMALS};
 use soroban_sdk::{contractimpl, Env};
 
 #[contractimpl]
@@ -71,7 +71,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, Address, Env};
 
-    fn setup(env: &Env) -> OracleClient {
+    fn setup(env: &Env) -> OracleClient<'_> {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);

@@ -15,8 +15,8 @@
 //! a minority of bad values but cannot help if the majority is wrong. Even
 //! counts average the two central values, which can round down by one ulp.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, Address, Env, Vec};
 
 #[contractimpl]
@@ -55,7 +55,9 @@ impl Oracle {
             price: median,
             timestamp: env.ledger().timestamp(),
         };
-        env.storage().persistent().set(&DataKey::Price(asset), &data);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Price(asset), &data);
         median
     }
 }
@@ -103,7 +105,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, vec, Env};
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);
@@ -128,7 +130,10 @@ mod test {
         env.mock_all_auths();
         let (oracle, _admin) = setup(&env);
         let xlm = Address::generate(&env);
-        let m = oracle.set_price_median(&xlm, &vec![&env, 1_0000000, 2_0000000, 3_0000000, 4_0000000]);
+        let m = oracle.set_price_median(
+            &xlm,
+            &vec![&env, 1_0000000, 2_0000000, 3_0000000, 4_0000000],
+        );
         assert_eq!(m, 2_5000000);
     }
 
@@ -138,7 +143,10 @@ mod test {
         env.mock_all_auths();
         let (oracle, _admin) = setup(&env);
         let xlm = Address::generate(&env);
-        assert_eq!(oracle.set_price_median(&xlm, &vec![&env, 9_0000000]), 9_0000000);
+        assert_eq!(
+            oracle.set_price_median(&xlm, &vec![&env, 9_0000000]),
+            9_0000000
+        );
     }
 
     #[test]

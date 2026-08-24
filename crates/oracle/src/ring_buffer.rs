@@ -12,8 +12,8 @@
 //! applied on top — keeping history does not by itself defend against a writer
 //! pushing crafted values.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, contracttype, Address, Env, Vec};
 
 /// Maximum number of samples retained per asset.
@@ -54,9 +54,7 @@ impl Oracle {
         while ring.len() > RING_CAPACITY {
             ring.remove(0);
         }
-        env.storage()
-            .persistent()
-            .set(&RingKey::Ring(asset), &ring);
+        env.storage().persistent().set(&RingKey::Ring(asset), &ring);
     }
 
     /// The retained samples for `asset`, oldest first. Empty if none.
@@ -78,7 +76,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, Env};
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);
@@ -118,7 +116,10 @@ mod test {
         assert_eq!(s.len(), RING_CAPACITY);
         // Oldest retained should be (total - capacity) = 3, newest = cap+2.
         assert_eq!(s.get(0).unwrap().price, 3);
-        assert_eq!(s.get(RING_CAPACITY - 1).unwrap().price, (RING_CAPACITY + 2) as i128);
+        assert_eq!(
+            s.get(RING_CAPACITY - 1).unwrap().price,
+            (RING_CAPACITY + 2) as i128
+        );
     }
 
     #[test]

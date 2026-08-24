@@ -13,8 +13,8 @@
 //! attacker could still walk the price in within-threshold steps. Combine with
 //! TWAP/median for stronger defence.
 
-use crate::{DataKey, Oracle, PriceData};
 use crate::OracleClient;
+use crate::{DataKey, Oracle, PriceData};
 use soroban_sdk::{contractimpl, Address, Env};
 
 const BPS_DENOMINATOR: i128 = 10_000;
@@ -26,13 +26,20 @@ impl Oracle {
     ///
     /// A non-positive `old_price` (no meaningful baseline) is treated as always
     /// within tolerance. Uses checked arithmetic on the absolute delta.
-    pub fn is_within_deviation(_env: Env, old_price: i128, new_price: i128, max_deviation_bps: u32) -> bool {
+    pub fn is_within_deviation(
+        _env: Env,
+        old_price: i128,
+        new_price: i128,
+        max_deviation_bps: u32,
+    ) -> bool {
         if old_price <= 0 {
             return true;
         }
         let delta = (new_price - old_price).unsigned_abs() as i128;
         // delta / old_price <= bps / 10_000  <=>  delta * 10_000 <= bps * old_price
-        let lhs = delta.checked_mul(BPS_DENOMINATOR).expect("deviation overflow");
+        let lhs = delta
+            .checked_mul(BPS_DENOMINATOR)
+            .expect("deviation overflow");
         let rhs = (max_deviation_bps as i128)
             .checked_mul(old_price)
             .expect("deviation overflow");
@@ -93,7 +100,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, Env};
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);

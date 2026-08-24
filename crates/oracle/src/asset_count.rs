@@ -9,8 +9,8 @@
 //! Read-only over admin-curated state; introduces no new trust beyond the base
 //! feed.
 
-use crate::{DataKey, Oracle};
 use crate::OracleClient;
+use crate::{DataKey, Oracle};
 use soroban_sdk::{contractimpl, Address, Env, Vec};
 
 #[contractimpl]
@@ -30,7 +30,7 @@ mod test {
     use super::*;
     use soroban_sdk::{testutils::Address as _, Env};
 
-    fn setup(env: &Env) -> (OracleClient, Address) {
+    fn setup(env: &Env) -> (OracleClient<'_>, Address) {
         let admin = Address::generate(env);
         let id = env.register_contract(None, Oracle);
         let client = OracleClient::new(env, &id);
