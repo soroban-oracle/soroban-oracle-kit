@@ -8,6 +8,7 @@
 //! some (e.g. AMM spot) are explicitly *not* safe for direct use in
 //! liquidations. See the individual modules.
 
+pub mod amm_spot;
 pub mod fixed;
 pub mod identity;
 pub mod source;
