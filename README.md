@@ -32,6 +32,23 @@ The 🚧 items are tracked as [open issues](https://github.com/soroban-oracle/so
 
 ---
 
+## Roadmap
+
+**Near-term**, tracked as open, point-tagged issues:
+
+- TWAP accumulator ([#5](https://github.com/soroban-oracle/soroban-oracle-kit/issues/5)) and windowed TWAP query ([#6](https://github.com/soroban-oracle/soroban-oracle-kit/issues/6)) — the core manipulation-resistance work
+- A test suite demonstrating TWAP's manipulation resistance vs. spot pricing ([#7](https://github.com/soroban-oracle/soroban-oracle-kit/issues/7))
+- An integration recipe for pricing `soroban-amm` pools end-to-end ([#4](https://github.com/soroban-oracle/soroban-oracle-kit/issues/4))
+- A code-coverage CI job ([#8](https://github.com/soroban-oracle/soroban-oracle-kit/issues/8))
+
+**Further out**, not yet scoped into issues:
+
+- Wire the oracle into `soroban-amm` as a reference consumer
+- Push-based feeds and a keeper script for automated price updates
+- Publish to crates.io once the interface stabilizes
+
+---
+
 ## Pricing convention
 
 Prices are `i128` fixed-point with **7 implied decimals** (matching Stellar's
@@ -89,6 +106,14 @@ trust assumptions. See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the development workflow and
 [`OPEN_SOURCE_ISSUES.md`](./OPEN_SOURCE_ISSUES.md) for scoped, point-tagged
 issues to get started on.
+
+## Questions & getting in touch
+
+For general questions, ideas, or design discussion, use
+[GitHub Discussions](https://github.com/soroban-oracle/soroban-oracle-kit/discussions)
+rather than opening an issue. For suspected security vulnerabilities, see the
+private reporting instructions in [`SECURITY.md`](./SECURITY.md) instead —
+please don't discuss those in the open.
 
 ## License
 
