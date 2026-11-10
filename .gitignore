@@ -6,3 +6,5 @@ test_snapshots/
 # Internal strategy/backlog docs kept out of the published repo
 WAVE_PITCH.md
 ISSUES.md
+config.bat
+node_modules
